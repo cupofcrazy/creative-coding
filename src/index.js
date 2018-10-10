@@ -1,9 +1,16 @@
+import Loader from '../public/Loader'
 import * as dat from 'dat.gui';
 import { TweenMax, Power3 } from 'gsap'
 import { randomInt, dist, angToRad, colors } from '../public/utils/index';
 import Circle from '../public/Shapes/Circle';
 import Rect from '../public/Shapes/Rect'
 import Point from '../public/Shapes/Point'
+
+// Loading
+let loader = new Loader();
+window.addEventListener('load', () => {
+    loader.onComplete();
+})
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -30,7 +37,7 @@ canvas.height = window.innerHeight;
 const ctx = canvas.getContext('2d');
 
 // Set background
-background('blue')
+
 
 // Arrays of Shapes
 let circles = [];
@@ -39,14 +46,14 @@ let rectangles = [];
 
 const circleFolder = gui.addFolder('circles');
 
-for (let i = 0; i < 500; i++) {
+for (let i = 0; i < 300; i++) {
     // ctx.arc(i * 10, i + 10, 50, 0, Math.PI / 180, false);
 
     const p1 = new Point(randomInt(0, WIDTH), randomInt(0, HEIGHT));
     // const p2 = new Point((randomInt(0, HEIGHT), randomInt(0, HEIGHT)));
 
     // ctx.translate(window.innerWidth / 2, window.innerHeight / 2);
-    const circle = new Circle(ctx, p1.x, p1.y, randomColor(colors), randomInt(1, 10), true);
+    const circle = new Circle(ctx, p1.x, p1.y, randomColor(colors), randomInt(1, 30), true);
     const rect = new Rect(ctx, p1.x, p1.y, randomInt(2, 10), randomInt(2, 10), randomColor(colors));
 
 
@@ -69,7 +76,7 @@ for (let i = 0; i < 500; i++) {
 
 function animate() {
     requestAnimationFrame(animate);
-
+    background('blue')
     for (let i = 0; i < circles.length; i++) {
         const circle = circles[i];
         circle.draw();
@@ -88,7 +95,7 @@ canvas.addEventListener('mousemove', (e) => {
         TweenMax.to(circle, index * 0.01, {
                 x: x,
                 y: y,
-                ease: Expo.easeInOut
+                ease: Expo.ease
             })
             // setTimeout(() => {
             //     circle.x = x;

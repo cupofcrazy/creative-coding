@@ -20,3 +20,40 @@ canvas {
     top: 0;
     left: 0;
 }
+
+#loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s ease;
+}
+
+#loader .circle {
+    border: 2px solid blue;
+    width: 30px;
+    height: 30px;
+    animation-name: rotateInfinite;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+#loader.loaded {
+    transition: all .5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes rotateInfinite {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
