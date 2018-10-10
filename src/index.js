@@ -38,7 +38,6 @@ const ctx = canvas.getContext('2d');
 
 // Set background
 
-
 // Arrays of Shapes
 let circles = [];
 let rectangles = [];
@@ -56,9 +55,6 @@ for (let i = 0; i < 300; i++) {
     const circle = new Circle(ctx, p1.x, p1.y, randomColor(colors), randomInt(1, 30), true);
     const rect = new Rect(ctx, p1.x, p1.y, randomInt(2, 10), randomInt(2, 10), randomColor(colors));
 
-
-
-
     // push shapes to thier respective arrays
     circles.push(circle)
     rectangles.push(rect)
@@ -73,17 +69,13 @@ for (let i = 0; i < 300; i++) {
 
 }
 
-
 function animate() {
     requestAnimationFrame(animate);
     background('blue')
     for (let i = 0; i < circles.length; i++) {
         const circle = circles[i];
         circle.draw();
-
-
     }
-
 }
 
 // Mouse interaction
@@ -101,7 +93,6 @@ canvas.addEventListener('mousemove', (e) => {
             //     circle.x = x;
             //     circle.y = y;
             // }, index * 10)
-
     })
 })
 
