@@ -1,8 +1,9 @@
 import * as dat from 'dat.gui';
-import { randomInt, dist, angToRad, colors } from '../public/utils';
+import { TweenMax, Power3 } from 'gsap'
+import { randomInt, dist, angToRad, colors } from '../public/utils/index';
 import Circle from '../public/Shapes/Circle';
 import Rect from '../public/Shapes/Rect'
-import Point from '../public/Point'
+import Point from '../public/Shapes/Point'
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -38,14 +39,14 @@ let rectangles = [];
 
 const circleFolder = gui.addFolder('circles');
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 500; i++) {
     // ctx.arc(i * 10, i + 10, 50, 0, Math.PI / 180, false);
 
     const p1 = new Point(randomInt(0, WIDTH), randomInt(0, HEIGHT));
     // const p2 = new Point((randomInt(0, HEIGHT), randomInt(0, HEIGHT)));
 
     // ctx.translate(window.innerWidth / 2, window.innerHeight / 2);
-    const circle = new Circle(ctx, p1.x, p1.y, randomColor(colors), randomInt(1, 10));
+    const circle = new Circle(ctx, p1.x, p1.y, randomColor(colors), randomInt(1, 10), true);
     const rect = new Rect(ctx, p1.x, p1.y, randomInt(2, 10), randomInt(2, 10), randomColor(colors));
 
 
@@ -68,19 +69,33 @@ for (let i = 0; i < 100; i++) {
 
 function animate() {
     requestAnimationFrame(animate);
-    background('blue')
+
     for (let i = 0; i < circles.length; i++) {
         const circle = circles[i];
-        // circle.speed += 0.005;
-        // circle.x += Math.cos(angToRad(15)) * circle.speed;
-        // circle.y += Math.cos(angToRad(15)) * circle.speed;
-        circle.animate()
-
         circle.draw();
 
 
     }
 
 }
+
+// Mouse interaction
+canvas.addEventListener('mousemove', (e) => {
+    const x = e.pageX;
+    const y = e.pageY;
+
+    circles.forEach((circle, index) => {
+        TweenMax.to(circle, index * 0.01, {
+                x: x,
+                y: y,
+                ease: Expo.easeInOut
+            })
+            // setTimeout(() => {
+            //     circle.x = x;
+            //     circle.y = y;
+            // }, index * 10)
+
+    })
+})
 
 animate();
