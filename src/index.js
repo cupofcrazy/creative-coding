@@ -52,7 +52,7 @@ for (let i = 0; i < 300; i++) {
     // const p2 = new Point((randomInt(0, HEIGHT), randomInt(0, HEIGHT)));
 
     // ctx.translate(window.innerWidth / 2, window.innerHeight / 2);
-    const circle = new Circle(ctx, p1.x, p1.y, randomColor(colors), randomInt(1, 30), true);
+    const circle = new Circle(ctx, p1.x, p1.y, randomColor(colors), randomInt(1, 50), true);
     const rect = new Rect(ctx, p1.x, p1.y, randomInt(2, 10), randomInt(2, 10), randomColor(colors));
 
     // push shapes to thier respective arrays

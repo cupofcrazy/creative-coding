@@ -12,11 +12,10 @@ export default class Circle {
     }
     draw() {
         let isStroke = this.stroke ? true : false;
-        if (isStroke) {
-            this.ctx.fillStyle = this.color;
-        } else {
-            this.ctx.strokeStyle = this.color;
-        }
+        
+        if (isStroke) this.ctx.fillStyle = this.color;
+        else this.ctx.strokeStyle = this.color;
+
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
         this.ctx.closePath();
