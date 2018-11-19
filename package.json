@@ -14,7 +14,9 @@
         "es6",
         "boilerplate",
         "babel",
-        "gsap"
+        "gsap",
+        "pixi",
+        "three.js"
     ],
     "author": "tobybarlhogun@gmail.com",
     "license": "ISC",

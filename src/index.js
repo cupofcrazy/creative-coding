@@ -1,8 +1,9 @@
+const { query, queryAll } = require('../public/utils/index')
 import Loader from '../public/Loader'
-import * as dat from 'dat.gui';
+import * as dat from 'dat.gui'
 import { TweenMax, Power3 } from 'gsap'
-import { randomInt, dist, angToRad, colors } from '../public/utils/index';
-import Circle from '../public/Shapes/Circle';
+import { randomInt, dist, angToRad, colors } from '../public/utils/index'
+import Circle from '../public/Shapes/Circle'
 import Rect from '../public/Shapes/Rect'
 import Point from '../public/Shapes/Point'
 
@@ -23,6 +24,9 @@ function background(color) {
 }
 
 console.log(dist(5, 10, 2, 8))
+
+// Random direction [-1, +1]
+const randomDir = (...dirs) => dirs[Math.floor(Math.random() * dirs.length)];
 
 
 let randomColor = (array) => {
@@ -45,7 +49,7 @@ let rectangles = [];
 
 const circleFolder = gui.addFolder('circles');
 
-for (let i = 0; i < 300; i++) {
+for (let i = 0; i < 50; i++) {
     // ctx.arc(i * 10, i + 10, 50, 0, Math.PI / 180, false);
 
     const p1 = new Point(randomInt(0, WIDTH), randomInt(0, HEIGHT));
@@ -79,14 +83,23 @@ function animate() {
 }
 
 // Mouse interaction
+const randomDirections = []
+circles.forEach(circ => {
+    const r = randomDir(1, -1)
+    randomDirections.push(r)
+    console.log({ r })
+})
+
+
 canvas.addEventListener('mousemove', (e) => {
     const x = e.pageX;
     const y = e.pageY;
 
     circles.forEach((circle, index) => {
+        // console.log(randomDirections[index])
         TweenMax.to(circle, index * 0.01, {
-                x: x,
-                y: y,
+                x: (x * randomDirections[index]),
+                y: (y * randomDirections[index]),
                 ease: Expo.ease
             })
             // setTimeout(() => {
