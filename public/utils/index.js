@@ -1,4 +1,11 @@
 module.exports = {
+    query: (element) => {
+        return document.querySelector(element)
+    },
+    queryAll: (elements) => {
+        // Array.from(Node elements) shorthand
+        return [...document.querySelectorAll(elements)]
+    },
     randomInt: (min, max) => {
         return Math.floor(Math.random() * (max - min + 1) + min);
     },
