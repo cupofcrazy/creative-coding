@@ -1,7 +1,7 @@
 # creative-coding
 Creative coding using canvas
-Install dependencies
+- Install dependencies
 `npm install`
 
-Start server
+- Start server
 `npm start`
